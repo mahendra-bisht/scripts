@@ -2,11 +2,11 @@
 
 #!/bin/bash
 
-# MySQL credentials
+# MySQL credentials, if you don't want to pass the creds in plain text then you can use .my.cnf for Secure Authentication or can use Environment Variables(for temporary storage)
 MYSQL_USER="xxxx"
 MYSQL_PASSWORD="xxxx"
 MYSQL_DATABASE="xxxx"
-MYSQL_HOST="xxxx/localhost"  # Since localhost doesn't have Update access
+MYSQL_HOST="xxxx/localhost"
 
 # Log file location
 LOG_FILE="/home/devops/mysql_update.log"
@@ -21,7 +21,7 @@ BEFORE_VALUE=$(mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $MYSQL_HOST $MYSQL_DATA
 echo "[$TIMESTAMP] BEFORE UPDATE: $BEFORE_VALUE" >> $LOG_FILE
 
 # Execute UPDATE query
-mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $MYSQL_HOST $MYSQL_DATABASE -e "UPDATE Gadget SET Margin='0.35',LastUpdateBy=15560 WHERE ID=2510;"
+mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $MYSQL_HOST $MYSQL_DATABASE -e "UPDATE Gadget SET Margin='0.35',LastUpdateBy=11 WHERE ID=2510;"
 
 # Execute third SELECT query and store values
 AFTER_VALUE=$(mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $MYSQL_HOST $MYSQL_DATABASE -se "select Margin, LastUpdateBy from Licensee WHERE ID=2510;")
